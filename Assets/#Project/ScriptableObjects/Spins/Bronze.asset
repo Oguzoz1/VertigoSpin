@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7345807442670a34b9614c97586bd973, type: 3}
+  m_Name: Bronze
+  m_EditorClassIdentifier: 
+  name: Bronze
+  _spinSprite: {fileID: 21300000, guid: 52980e443302e8143b67e04c7c388d70, type: 3}
+  _spinIndicatorSprite: {fileID: 21300000, guid: 4a782745806c1714ab92b62b665c366e, type: 3}
+  _slices: []
