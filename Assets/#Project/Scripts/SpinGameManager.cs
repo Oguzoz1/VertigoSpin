@@ -17,7 +17,7 @@ public class SpinGameManager : MonoBehaviour
     [SerializeField] private MyButton _leaveButton;
     [SerializeField] private DynamicallyRectMover _dynamicallyRectMover;
 
-    private SliceDisplay _rewardSlice;
+    private SliceDisplayer _rewardSlice;
 
     public Inventory Inventory { get => _inventory; private set => _inventory = value; }
     public ZoneInitialiser ZoneInitialiser { get => _zoneInitialiser; private set => _zoneInitialiser = value; }

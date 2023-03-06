@@ -12,14 +12,14 @@ public class SpinContentRandomiser : MonoBehaviour
     [SerializeField] private int _bombAmount = 1;
 
     //Set each slice according to randomised values.
-    public void SetSlices(SliceDisplay[] slices)
+    public void SetSlices(SliceDisplayer[] slices)
     {
         //Reset slice SO.
         ResetSlices(slices);
         if (_zoneInitialiser.BombExists())
             SetBomb(slices);
         //Set Rest of the Slices
-        foreach (SliceDisplay sliceDisplay in slices)
+        foreach (SliceDisplayer sliceDisplay in slices)
         {
             //Set SO reference in the slices
             if (sliceDisplay.SliceSO == null)
@@ -32,7 +32,7 @@ public class SpinContentRandomiser : MonoBehaviour
             }
         }
     }
-    private void SetBomb(SliceDisplay[] slices)
+    private void SetBomb(SliceDisplayer[] slices)
     {
         //Plants two bombs within the wheel.
         for (int i = 0; i < _bombAmount; i++)
@@ -41,9 +41,9 @@ public class SpinContentRandomiser : MonoBehaviour
             slices[randomIndex].SetSliceSO(_bomb);
         }
     }
-    private void ResetSlices(SliceDisplay[] slices)
+    private void ResetSlices(SliceDisplayer[] slices)
     {
-        foreach (SliceDisplay sliceDisplay in slices)
+        foreach (SliceDisplayer sliceDisplay in slices)
         {
             sliceDisplay.SliceSO = null;
         }

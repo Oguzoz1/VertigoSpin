@@ -9,15 +9,15 @@ public class SpinSO : ScriptableObject
     [SerializeField] private new string name;
     [SerializeField] private Sprite _spinSprite;
     [SerializeField] private Sprite _spinIndicatorSprite;
-    [SerializeField] private SliceDisplay[] _slices;
+    [SerializeField] private SliceDisplayer[] _slices;
 
-    public SliceDisplay[] Slices { get => _slices; private set => _slices = value; }
+    public SliceDisplayer[] Slices { get => _slices; private set => _slices = value; }
     public Sprite SpinSprite { get => _spinSprite; private set => _spinSprite = value; }
     public Sprite SpinIndicatorSprite { get => _spinIndicatorSprite; private set => _spinIndicatorSprite = value; }
     public string Name { get => name; set => name = value; }
 
     public void SetSliceReferences(SpinDisplayer initialiser)
     {
-        Slices = initialiser.GetComponentsInChildren<SliceDisplay>();
+        Slices = initialiser.GetComponentsInChildren<SliceDisplayer>();
     }
 }

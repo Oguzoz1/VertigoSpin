@@ -11,7 +11,7 @@ public class RewardClickHandler : MonoBehaviour, IPointerDownHandler
     private SpinGameManager _spinGameManager;
     private Inventory _inventory;
     private ZoneInitialiser _zoneInitialiser;
-    private SliceDisplay _rewardSlice;
+    private SliceDisplayer _rewardSlice;
     private Animator _animator;
     private bool isClicked = false;
     private void Start()
@@ -59,7 +59,7 @@ public class RewardClickHandler : MonoBehaviour, IPointerDownHandler
         }
     }
     #region Setters
-    public void SetRewardSlice(SliceDisplay slice)
+    public void SetRewardSlice(SliceDisplayer slice)
     {
         _rewardSlice = slice;
     }

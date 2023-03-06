@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SliceDisplay : MonoBehaviour
+public class SliceDisplayer : MonoBehaviour
 {
     [Header("===SLICE REFERENCES===")]
     [SerializeField] private SliceSO _sliceSO;

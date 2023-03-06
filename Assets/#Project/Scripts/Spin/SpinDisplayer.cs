@@ -32,12 +32,12 @@ public class SpinDisplayer : MonoBehaviour
         _spinImage.sprite = spin.SpinSprite;
         _spinIndicatorImage.sprite = spin.SpinIndicatorSprite;
     }
-    public SliceDisplay ClosestSliceToIndýcator()
+    public SliceDisplayer ClosestSliceToIndýcator()
     {
         //Iterates through slices to find the closest one.
-        SliceDisplay closest = null;
+        SliceDisplayer closest = null;
         float distance = Mathf.Infinity;
-        foreach(SliceDisplay slice in Spin.Slices)
+        foreach(SliceDisplayer slice in Spin.Slices)
         {
             float sqrDist = (_spinIndicatorImage.gameObject.transform.position - slice.transform.position).sqrMagnitude;
             if (sqrDist <= distance)
