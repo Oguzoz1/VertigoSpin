@@ -47,11 +47,13 @@ public class SpinGameManager : MonoBehaviour
         //Setting rewardSlice
         if (SpinDisplayer != null)
             _rewardSlice = SpinDisplayer.ClosestSliceToIndýcator();
+
         if (_rewardSlice.SliceSO.Name != "Bomb")
             _rewardSlice.SetGiven(true);
         else
         {
-            Lose();
+            RewardClickHandler.SetRewardSlice(_rewardSlice);
+            RewardClickHandler.SetRewardImage(_rewardSlice.SliceSO.Sprite);
             return;
         }
 
@@ -62,20 +64,23 @@ public class SpinGameManager : MonoBehaviour
     public void Lose()
     {
         Debug.Log("LOSE");
-        Inventory.CleanInventory();
         Restart();
     }
-    public void Restart()
+    private void Restart()
     {
-        _dynamicallyRectMover.ReturnToOriginal();
-        _zoneInitialiser.SetZone();
-        _zoneInitialiser.SetSpritesAndInitialiseZoneTracker();
+        _dynamicallyRectMover.ResetMover();
+        _zoneInitialiser.ResetInitialiser();
+        Inventory.CleanInventory();
     }
     public void StopGame()
     {
         //Stop the application
         if (!WheelSpinner.IsSpinning)
+        {
             Application.Quit();
+            Debug.Log("LEAVE");
+        }
+            
     }
     #endregion
 }

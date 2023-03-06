@@ -27,6 +27,9 @@ public class ZoneTracker : MonoBehaviour
     {
         //Setting Current Zone to default.
         _currentZone = Zones[0];
+
+        _dynamicRectMover.MoveContentHorizontally();
+        Debug.Log(CurrentZone());
     }
     public void SetNextZone()
     {
@@ -36,6 +39,8 @@ public class ZoneTracker : MonoBehaviour
         //Setting next zone reference
         if (Zones[CurrentZone()] != null)
         _currentZone = Zones[CurrentZone()];
+
+        Debug.Log("Zone:" + CurrentZone());
     }
     public int CurrentZone()
     {

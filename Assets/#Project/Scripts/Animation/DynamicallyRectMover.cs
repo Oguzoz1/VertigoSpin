@@ -8,6 +8,12 @@ public class DynamicallyRectMover : MonoBehaviour
     [SerializeField] private RectTransform rect;
     [SerializeField] private Vector3 _rectStartPoint = new Vector3(325f, -12f, 0f);
     [SerializeField] private Vector3 _rectOffsetModifier = new Vector3(-91f,0,0);
+
+    private Vector3 _originalPoint;
+    private void Awake()
+    {
+        _originalPoint = _rectStartPoint;
+    }
     public void MoveContentHorizontally()
     {
         //Set rect local pos to start position
@@ -17,8 +23,9 @@ public class DynamicallyRectMover : MonoBehaviour
         _rectStartPoint += _rectOffsetModifier;
     }
 
-    public void ReturnToOriginal()
+    public void ResetMover()
     {
+        _rectStartPoint = _originalPoint;
         rect.transform.localPosition = _rectStartPoint;
     }
 }

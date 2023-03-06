@@ -17,21 +17,21 @@ public class ZoneInitialiser : MonoBehaviour
     [SerializeField] private GameObject _safeZone;
     [SerializeField] private GameObject _superZone;
 
-    public ZoneTracker ZoneTracker { get => _zoneTracker; set => _zoneTracker = value; }
+    public ZoneTracker ZoneTracker { get => _zoneTracker; private set => _zoneTracker = value; }
 
     private SpinDisplayer _spinDisplayer;
     private void Start()
     {
         _spinDisplayer = SpinGameManager.Instance.SpinDisplayer;
 
-        ZoneTracker.ContinueNextZone += SetSpritesAndInitialiseZoneTracker;
+        ZoneTracker.ContinueNextZone += SetSpritesAndInitialiseSpin;
         SetZone();
-        SetSpritesAndInitialiseZoneTracker();
+        SetSpritesAndInitialiseSpin();
     }
     private void OnDisable()
     {
         Debug.Log("UNSUBBED TO EVENTS");
-        ZoneTracker.ContinueNextZone -= SetSpritesAndInitialiseZoneTracker;
+        ZoneTracker.ContinueNextZone -= SetSpritesAndInitialiseSpin;
     }
     #region Setters
     public void SetZone()
@@ -49,21 +49,25 @@ public class ZoneInitialiser : MonoBehaviour
             else if (isSuperZone) SpawnZone(_superZone, i);
             else SpawnZone(_safeZone, i);
         }
-        _zoneTracker.SetTracker();
+        ZoneTracker.SetTracker();
+    }
+    public void ResetInitialiser()
+    {
+        ZoneTracker.SetTracker();
+        SetSpritesAndInitialiseSpin();
     }
     private void SetZoneText(TextMeshProUGUI text, int level)
     {
         text.text = level.ToString();
     }
-    public void SetSpritesAndInitialiseZoneTracker()
+
+    //Generates Spin Content and Sets Spin Sprite. Using this to randomise the spin relative to zone level.
+    public void SetSpritesAndInitialiseSpin()
     {
         //Checking spinSO and getting correct SO
         if (IsSafeZone() && !IsSuperZone()) _spinDisplayer.Spin = GetSpin("Silver");
         else if (IsSuperZone()) _spinDisplayer.Spin = GetSpin("Gold");
         else _spinDisplayer.Spin = GetSpin("Bronze");
-
-        //Set Next Zone before resetting sprintsprites to avoid zone level shift and keep it at 5th and 30th
-        _zoneTracker.SetNextZone();
 
         //Initialising Spin from ZoneInitialiser to avoid timing confusion/null reference/false level zone.
         _spinDisplayer.InitialiseSpin(_spinDisplayer.Spin);
@@ -84,7 +88,6 @@ public class ZoneInitialiser : MonoBehaviour
         //Compare spin name to input to find the right one.
         foreach (SpinSO sp in _spinSO)
             if (sp.Name == name) spin = sp;
-        Debug.Log(spin.Name);
         return spin;
     }
     public bool BombExists()

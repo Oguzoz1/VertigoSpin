@@ -18,15 +18,16 @@ public class Inventory : MonoBehaviour
         Objects.Add(obj);
         obj.transform.SetParent(_inventorySpace);
     }
-    public void RemoveObject(GameObject obj)
+    public void DeleteObjects(GameObject obj)
     {
-        Objects.Remove(obj);
+        Destroy(obj);
     }
     public void CleanInventory()
     {
-        foreach(GameObject obj in Objects)
+        if (Objects.Count <= 0) return;
+        for (int i = 0; i < Objects.Count; i++)
         {
-            RemoveObject(obj);
+            DeleteObjects(Objects[i]);
         }
         Objects.Clear();
     }
